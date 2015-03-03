@@ -2,6 +2,7 @@ var Library = require('./Library')
 
 var Sidebar = React.createClass({
   render: function(){
+    console.log('rendering');
     var context = this;
     var libraryNodes = this.props.sidebarInfo.libraries.map(function(library){
       return (
@@ -9,7 +10,7 @@ var Sidebar = React.createClass({
       );
     });
     return (
-      <div className="Sidebar">
+      <div className="sidebar">
         <h1>Libraries</h1>
         <ul className="LibraryList">
           {libraryNodes}
