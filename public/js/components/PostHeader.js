@@ -7,7 +7,7 @@ var PostHeader = React.createClass({
     var initialState =  {};
     if(this.props.type === Constants.ANSWER) {
       initialState.collapsible = false;
-      initialState.title = "Answer:";
+      initialState.title = "Answer";
     } else {
       initialState.collapsible = true;
       initialState.title = this.props.post.title;

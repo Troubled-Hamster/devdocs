@@ -9,7 +9,7 @@ var Post = React.createClass({
         <hr/>
         <div className={"qa-" + this.props.type + "-inset"}>
           <PostHeader type={this.props.type} post={this.props.post} />
-          <PostBody text={this.props.post.text} />
+          <PostBody text={this.props.post.text} type={this.props.type} />
           <PostFooter post={this.props.post} />
         </div>
       </div>

@@ -15,11 +15,13 @@ var Question = React.createClass({
   },
 
   componentDidUpdate: function() {
-    $('pre').each(function() {
-      $(this).addClass('prettyprint');
-    });
+    if(!this.state.ignored) {
+      $('pre').each(function() {
+        $(this).addClass('prettyprint');
+      });
 
-    $('.stack').append('<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>');
+      $('.stack').append('<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>');
+    }
   },
 
   render: function(){
@@ -27,9 +29,9 @@ var Question = React.createClass({
     if (this.props.answers) {
       for (var i=0; i<this.props.answers.length; i++) {
         if (this.props.answers[i].is_accepted) {
-          answerNodes.push(<div><hr></hr><h4>Answer <img src='http://flockdocs-dev.elasticbeanstalk.com/checkmark.gif'></img></h4><div className="answer" dangerouslySetInnerHTML={{__html: this.props.answers[i].body}}></div></div>);
+          answerNodes.push(<div><hr></hr><h4><em><u>Answer</u></em><img className="checkmark" src='http://flockdocs-dev.elasticbeanstalk.com/checkmark.gif'></img></h4><div className="answer" dangerouslySetInnerHTML={{__html: this.props.answers[i].body}}></div></div>);
         } else {
-          answerNodes.push(<div><hr></hr><h4>Answer</h4><div className="answer" dangerouslySetInnerHTML={{__html: this.props.answers[i].body}}></div></div>);
+          answerNodes.push(<div><hr></hr><h4><em><u>Answer</u></em></h4><div className="answer" dangerouslySetInnerHTML={{__html: this.props.answers[i].body}}></div></div>);
         }
       }
     }
@@ -38,7 +40,7 @@ var Question = React.createClass({
       <h4 className="title question" onClick={this.select}>Question: {this.props.title}</h4>
         <div className={cx({"ignored": this.state.ignored, "question": true})} dangerouslySetInnerHTML={{__html: this.props.body}}></div>
         <div className={cx({"ignored": this.state.ignored})}>
-          <h4>ANSWERS</h4>
+          {/*<h4 className="text-center"><u>Answers</u></h4>*/}
           {answerNodes}
         </div>
         <hr></hr>
